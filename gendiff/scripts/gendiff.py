@@ -10,13 +10,13 @@ def main():
 
     parser.add_argument('second_file')
 
-    # parser.add_argument(
-    #     '-f',
-    #     '--format',
-    #     choices=list(FORMATTERS.keys()),
-    #     default='stylish',
-    #     help='Output format (default: stylish)',
-    # )
+    parser.add_argument(
+        '-f',
+        '--format',
+        # choices=list(FORMATTERS.keys()),
+        # default='stylish',
+        # help='Output format (default: stylish)',
+    )
 
     parser.parse_args()
 

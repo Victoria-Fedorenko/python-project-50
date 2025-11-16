@@ -33,6 +33,7 @@ def read_files(file1, file2):
 
     return data_1, data_2
 
+
 def find_the_same_data(data_1, data_2):
 
     keys_1 = data_1.keys()

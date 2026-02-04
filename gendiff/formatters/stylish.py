@@ -1,58 +1,62 @@
-def format_the_same_data(same_data):
-    result = []
-    for k, val in same_data.items():
-        result.append(f'    {k}: {val}')
-    return result
+def stylish_format_diff(tree):
+	def normalize(v):
+		if isinstance(v, bool):
+			return str(v).lower()
+		if v is None:
+			return 'null'
+		return str(v)
+	
+	
 
+	def actual_formatter(my_tree, current_depth=1):
+		acc = ''
+		indent = "    " * current_depth
 
-def format_removed_data(removed_data):
-    result = []
-    for k, val in removed_data.items():
-        result.append(f'  - {k}: {val}'.lower())
-    return result
+		def format_value(value):
+			if isinstance(value, dict):
+				inner = '{\n' + actual_formatter(value, current_depth + 1) + indent + '  }'
+			else:
+				inner = normalize(value)
+			return f"{inner}\n"
+		
+		sorted_keys = sorted(my_tree.keys())
 
+		for key in sorted_keys:
+			node = my_tree[key]
+			if not isinstance(node, dict):
+				acc += f'{indent}  {key}: {normalize(node)}\n'
+				continue
 
-def format_added_data(added_data):
-    result = []
-    for k, val in added_data.items():
-        result.append(f'  + {k}: {val}'.lower())
-    return result
+			if '_status' not in node:
+				acc += f'{indent}  {key}: {format_value(node)}'
+				continue
 
+			status = node.get('_status')
 
-def format_changed_data(before_change, after_change):
-    result = []
-    for k in before_change.keys():
-        val1 = before_change[k]
-        val2 = after_change[k]
-        result.append(f'  - {k}: {val1}')
-        result.append(f'  + {k}: {val2}')
-    return result
+			if status == "recursive":
+				acc += f'{indent}  {key}: {{\n'
+				child = {kk: vv for kk, vv in node.items() if kk != '_status'}
+				acc += actual_formatter(child, current_depth + 1)
+				acc += f'{indent}}}\n'
 
+			elif status == "removed":
+				value = node.get('_value', '')
+				acc += f'{indent}- {key}: {format_value(value)}'
 
-def stylish(same_data, removed_data, added_data, before_change, after_change):
+			elif status == "added":
+				value = node.get('_value', '')
+				acc += f'{indent}+ {key}: {format_value(value)}'
 
-    same_data_formatted = format_the_same_data(same_data)
-    removed_data_formatted = format_removed_data(removed_data)
-    added_data_formatted = format_added_data(added_data)
-    changed_data_formatted = format_changed_data(before_change, after_change)
+			elif status == "changed":
+				old_value = node.get('_value', '')
+				new_value = node.get('_new_value', '')
+				acc += f'{indent}- {key}: {format_value(old_value)}'
+				acc += f'{indent}+ {key}: {format_value(new_value)}'
 
-    big_list = (same_data_formatted +
-                removed_data_formatted +
-                added_data_formatted + 
-                changed_data_formatted)
+			elif status == "unchanged":
+				value = node.get('_value', '')
+				acc += f'{indent}  {key}:  {format_value(value)}'
 
-    def sort_key(x):
-        key_name = x.lstrip(' +-').split(':', 1)[0]
-        stripped = x.strip()
-        if stripped.startswith('-'):
-            marker = 0
-        elif stripped.startswith('+'):
-            marker = 1
-        else:
-            marker = 2
-        return (key_name, marker)
+		return acc
 
-    sorted_list = sorted(big_list, key=sort_key)
-    joined = '\n'.join(sorted_list)
-    result = f'{{\n{joined}\n}}'
-    return result
+	return actual_formatter(tree)

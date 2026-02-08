@@ -71,3 +71,25 @@ def get_tree_with_categories(before, after):
 			}
 
 	return accumulator
+
+def get_nested_keys(d):
+	items = []
+	def actual_get_nested_keys(d, parent_key='', sep='.'):
+		for k, v in d.items():
+			if k not in ['_status', '_value', '_new_value']:
+				new_key = parent_key + sep + str(k) if parent_key else str(k)
+				items.append(new_key)
+				if isinstance(v, dict):
+					actual_get_nested_keys(v, new_key, sep=sep)
+		return items
+	return actual_get_nested_keys(d, parent_key='', sep='.')
+
+def get_value_by_nested_key(d, full_key, sep='.'):
+    keys = full_key.split(sep)
+    current_value = d
+    for key in keys:
+        if isinstance(current_value, dict) and key in current_value:
+            current_value = current_value[key]
+        else:
+            return None # Или бросить KeyError
+    return current_value

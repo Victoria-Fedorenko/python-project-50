@@ -1,42 +1,30 @@
 
 import argparse
 
-# from gendiff.formatters.json import json_formatter
-# from gendiff.formatters.plain import plain
-from gendiff.formatters.stylish import stylish
-from gendiff.scripts.parse_data import get_categorized_data, read_files
+from gendiff.formatters.json import json_format_diff
+from gendiff.formatters.plain import plain_format_diff
+from gendiff.formatters.stylish import stylish_format_diff
+from gendiff.scripts.parse_data import read_files, get_tree_with_categories
 
 FORMATTERS = {
-    "stylish": stylish,
-    # "plain": plain,
-    # "json": json_formatter,
+    "stylish": stylish_format_diff,
+     "plain": plain_format_diff,
+     "json": json_format_diff,
 }
 
 
-def generate_diff(file1, file2, formatter=stylish):
+def generate_diff(file1, file2, formatter=stylish_format_diff):
 
     data_1, data_2 = read_files(file1, file2)
-    (
-        same_data,
-        removed_data,
-        added_data,
-        before_change,
-        after_change,
-    ) = get_categorized_data(
+    my_tree = get_tree_with_categories(
         data_1,
         data_2,
     )
     
     if isinstance(formatter, str):
-        formatter = FORMATTERS.get(formatter, stylish)
+        formatter = FORMATTERS.get(formatter, stylish_format_diff)
 
-    result = formatter(
-        same_data,
-        removed_data,
-        added_data,
-        before_change,
-        after_change,
-    )
+    result = formatter(my_tree)
 
     return result
     
@@ -61,7 +49,7 @@ def main():
 
     args = parser.parse_args()
 
-    formatter = FORMATTERS.get(args.format, stylish)
+    formatter = FORMATTERS.get(args.format, stylish_format_diff)
     result = generate_diff(
         args.first_file,
         args.second_file,

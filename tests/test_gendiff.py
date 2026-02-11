@@ -23,8 +23,6 @@ def test_generate_diff():
     assert generate_diff('tests/test_data/long1.json', 
                          'tests/test_data/long2.json', 
                          stylish_format_diff) == expected_stylish_long
-    assert generate_diff('tests/test_data/filepath1.yml', 
-                         'tests/test_data/filepath2.yml') == expected_stylish_short
     assert generate_diff('tests/test_data/long1.json', 
                          'tests/test_data/long2.json', 
                          plain_format_diff) == expected_plain

@@ -23,13 +23,13 @@ def plain_format_diff(my_tree):
             continue
         status = node.get('_status')
         if status == "removed":
-            result += f"Property {key} was removed\n"
+            result += f"Property '{key}' was removed\n"
         elif status == "added":
             value = format_value_from_node(node, '_value')
-            result += f"Property {key} was added with value: {value}\n"
+            result += f"Property '{key}' was added with value: {value}\n"
         elif status == "changed":
             old_value = format_value_from_node(node, '_value')
-            new_value = format_value_from_node(node, '_newValue')
-            result += f"Property {key} was updated. From {old_value} to {new_value}\n"
+            new_value = format_value_from_node(node, '_new_value')
+            result += f"Property '{key}' was updated. From {old_value} to {new_value}\n"
 
-    return result
+    return result.rstrip('\n')

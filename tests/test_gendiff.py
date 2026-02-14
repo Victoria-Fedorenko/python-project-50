@@ -13,7 +13,7 @@ def load_expected(name):
 
 
 def test_generate_diff():
-    expected_stylish_short = load_expected('stylish_short.txt')
+    # expected_stylish_short = load_expected('stylish_short.txt')
     expected_stylish_long = load_expected('stylish_long.txt')
     expected_plain = load_expected('plain.txt')
     expected_json = json.loads(load_expected('json.json'))

@@ -39,7 +39,7 @@ jobs:
         run: pip install -e .
       - name: Run tests with coverage
         run: |
-          pytest --cov=gendiff --cov-report=xml
+          pytest --cov=gendiff --cov-report=xml --cov-report=term-missing tests/
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
@@ -63,8 +63,6 @@ jobs:
         with:
           name: coverage-report
           path: ./
-      - name: Verify coverage file exists
-        run: ls -la coverage.xml
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         with:

@@ -63,14 +63,14 @@ jobs:
         with:
           name: coverage-report
           path: ./
+      - name: Verify coverage file exists
+        run: ls -la coverage.xml
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         with:
           args: >
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.coverageReportPaths=coverage.xml
-            -Dsonar.python.coverage.reportPaths=coverage.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_SCANNER_OPTS: -X

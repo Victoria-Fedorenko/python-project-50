@@ -94,5 +94,5 @@ def get_value_by_nested_key(d, full_key, sep='.'):
         if isinstance(current_value, dict) and key in current_value:
             current_value = current_value[key]
         else:
-            return None # Или бросить KeyError
+            return None
     return current_value

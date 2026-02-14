@@ -1,8 +1,9 @@
-from gendiff.scripts.gendiff import generate_diff
-from gendiff.formatters.stylish import stylish_format_diff
-from gendiff.formatters.plain import plain_format_diff
 import json
+
 from gendiff.formatters.json import json_format_diff
+from gendiff.formatters.plain import plain_format_diff
+from gendiff.formatters.stylish import stylish_format_diff
+from gendiff.scripts.gendiff import generate_diff
 
 
 def load_expected(name):

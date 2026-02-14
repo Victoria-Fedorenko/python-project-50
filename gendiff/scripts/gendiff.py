@@ -4,7 +4,7 @@ import argparse
 from gendiff.formatters.json import json_format_diff
 from gendiff.formatters.plain import plain_format_diff
 from gendiff.formatters.stylish import stylish_format_diff
-from gendiff.scripts.parse_data import read_files, get_tree_with_categories
+from gendiff.scripts.parse_data import get_tree_with_categories, read_files
 
 FORMATTERS = {
     "stylish": stylish_format_diff,

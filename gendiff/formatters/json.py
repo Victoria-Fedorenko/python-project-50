@@ -1,7 +1,9 @@
-from gendiff.scripts.parse_data import get_nested_keys, get_value_by_nested_key
 import json
 
-def json_format_diff(my_tree):
+from gendiff.scripts.parse_data import get_nested_keys, get_value_by_nested_key
+
+
+def json_format_diff(my_tree):  # noqa: C901
 
 	def format_value_from_node(node, v):
 		value = node.get(v, '')
@@ -14,7 +16,7 @@ def json_format_diff(my_tree):
 		return value
 
 	def format_json(my_tree):
-		my_keys	= sorted(get_nested_keys(my_tree))
+		my_keys = sorted(get_nested_keys(my_tree))
 		result_removed = {}
 		result_added = {}
 		result_changed = {}

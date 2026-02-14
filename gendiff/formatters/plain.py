@@ -1,6 +1,7 @@
 from gendiff.scripts.parse_data import get_nested_keys, get_value_by_nested_key
 
-def plain_format_diff(my_tree):
+
+def plain_format_diff(my_tree):  # noqa: C901
 	
     my_keys = sorted(get_nested_keys(my_tree))
 
@@ -30,6 +31,9 @@ def plain_format_diff(my_tree):
         elif status == "changed":
             old_value = format_value_from_node(node, '_value')
             new_value = format_value_from_node(node, '_new_value')
-            result += f"Property '{key}' was updated. From {old_value} to {new_value}\n"
+            result += (
+                f"Property '{key}' was updated. "
+                f"From {old_value} to {new_value}\n"
+            )
 
     return result.rstrip('\n')

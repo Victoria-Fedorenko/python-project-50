@@ -1,4 +1,4 @@
-def stylish_format_diff(tree):
+def stylish_format_diff(tree):  # noqa: C901
 	def normalize(v):
 		if isinstance(v, bool):
 			return str(v).lower()
@@ -6,15 +6,17 @@ def stylish_format_diff(tree):
 			return 'null'
 		return str(v)
 	
-	
-
-	def actual_formatter(my_tree, current_depth=0):
+	def actual_formatter(my_tree, current_depth=0):  # noqa: C901
 		acc = ''
 		key_indent = "    " * (current_depth + 1)
 		marker_indent = "    " * current_depth + "  "
+
 		def format_value(value):
 			if isinstance(value, dict):
-				inner = '{\n' + actual_formatter(value, current_depth + 1) + marker_indent + '  }'
+				inner = (
+					'{\n' + actual_formatter(value, current_depth + 1)
+					+ marker_indent + '  }'
+				)
 			else:
 				inner = normalize(value)
 			return f"{inner}\n"

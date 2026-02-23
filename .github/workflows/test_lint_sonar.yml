@@ -47,8 +47,7 @@ jobs:
           args: >
             -Dsonar.projectKey=python-project-50
             -Dsonar.organization=victoria-fedorenko
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.coverage.exclusions=tests/**
-            -Dsonar.exclusions=tests/**
+            -Dsonar.sources=gendiff
+            -Dsonar.verbose=true  
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

@@ -66,7 +66,7 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v6
         with:
           args: >
-            -Dsonar.projectKey=victoria-fedorenko_python-project-50
+            -Dsonar.projectKey=python-project-50
             -Dsonar.organization=victoria-fedorenko
             -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.coverage.exclusions=tests/**

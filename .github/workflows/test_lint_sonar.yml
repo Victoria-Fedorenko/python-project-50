@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Install dependencies
@@ -47,7 +47,10 @@ jobs:
           args: >
             -Dsonar.projectKey=python-project-50
             -Dsonar.organization=victoria-fedorenko
+            -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.sources=gendiff
             -Dsonar.verbose=true  
+            -Dsonar.coverage.exclusions=tests/**
+            -Dsonar.exclusions=tests/**
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

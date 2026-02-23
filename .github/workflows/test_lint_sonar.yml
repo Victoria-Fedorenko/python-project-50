@@ -39,6 +39,8 @@ jobs:
       - name: Run tests with coverage
         run: |
           make test-coverage
+          ls -la coverage.xml
+          cat coverage.xml | head -20
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         with:

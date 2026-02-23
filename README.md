@@ -26,3 +26,14 @@ gendiff file1.json file2.json
 # or with format option
 gendiff -f json file1.yml file2.yml
 ```
+Videos
+
+- [Use without arguments ('stylish' is default)](https://asciinema.org/a/854gxdb2JjKo7tTL)
+
+- [Use with 'stylish' formatter](https://asciinema.org/a/qJwF75eo1eoSugnd)
+
+- [Use with 'plain' formatter](https://asciinema.org/a/rKk47gYJyRGQVp4U)
+
+- [Use with 'json' formatter](https://asciinema.org/a/86cT0aq94Id8X5Xg)
+
+- [Use with .yml files](https://asciinema.org/a/YPr5odDnyzlzcfzS)

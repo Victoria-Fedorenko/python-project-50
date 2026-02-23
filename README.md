@@ -26,7 +26,7 @@ gendiff file1.json file2.json
 # or with format option
 gendiff -f json file1.yml file2.yml
 ```
-Videos
+### Videos
 
 - [Use without arguments ('stylish' is default)](https://asciinema.org/a/854gxdb2JjKo7tTL)
 

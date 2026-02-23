@@ -1,3 +1,12 @@
+#Difference Calculator
+
+##Tests and linter status
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Victoria-Fedorenko_python-project-50&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Victoria-Fedorenko_python-project-50)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Victoria-Fedorenko_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Victoria-Fedorenko_python-project-50)
+[![Actions Status](https://github.com/Victoria-Fedorenko/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Victoria-Fedorenko/python-project-50/actions)
+
+##General info
+
 This CLI tool can help you to compare two configuration files using gendiff function.
 You can compare json-files and yml-files.
 
@@ -17,8 +26,3 @@ gendiff file1.json file2.json
 # or with format option
 gendiff -f json file1.yml file2.yml
 ```
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Victoria-Fedorenko_python-project-50&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Victoria-Fedorenko_python-project-50)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Victoria-Fedorenko_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Victoria-Fedorenko_python-project-50)
-
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Victoria-Fedorenko/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Victoria-Fedorenko/python-project-50/actions)

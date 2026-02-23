@@ -49,7 +49,6 @@ jobs:
             -Dsonar.organization=victoria-fedorenko
             -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.sources=gendiff
-            -Dsonar.verbose=true  
             -Dsonar.coverage.exclusions=tests/**
             -Dsonar.exclusions=tests/**
         env:
